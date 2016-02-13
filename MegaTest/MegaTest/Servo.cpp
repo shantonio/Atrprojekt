@@ -31,7 +31,8 @@ ICR1 =20000 T=20ms  as TOP für 50 HZ PWM  extra für servo
 void Servo::initTimer1PWM()	
 {
 	//	DDRB |= (1<<PORTB7)| (1<<PORTB6)|(1<<PORTB5);				//Set OC1A, OC1B and OC1C as Output in Data Direction Register for PWM
-	  DDRB |= (1<<PB7)| (1<<PB6)|(1<<PB5);						//Set OC1A, OC1B and OC1C as Output in Data Direction Register for PWM
+	    DDRB |= (1<<PB7)| (1<<PB6)|(1<<PB5);						//Set OC1A, OC1B and OC1C as Output in Data Direction Register for PWM
+	//  DDRB= 0b11100000;											//Set OC1A, OC1B and OC1C as Output in Data Direction Register for PWM
 	//	DDRB=0xE0;													//Set OC1A, OC1B and OC1C as Output in Data Direction Register for PWM
 		
 		
