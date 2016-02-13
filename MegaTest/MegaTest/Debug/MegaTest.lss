@@ -263,7 +263,7 @@ int main(void)
 	
 	while(1)
 	{
-		u8TempData = print.USART_receive();
+		u8TempData = print.USART_receive(); // Wenn nix eingegebn dann warter er in funktion
  172:	88 e0       	ldi	r24, 0x08	; 8
  174:	92 e0       	ldi	r25, 0x02	; 2
  176:	79 d0       	rcall	.+242    	; 0x26a <_ZN10SerialTxRx13USART_receiveEv>
