@@ -2,7 +2,7 @@
 * SerialTxRx.h
 *
 * Created: 11.02.2016 10:28:49
-* Author: shantonio
+* Author: Anton Shilin
 */
 
 

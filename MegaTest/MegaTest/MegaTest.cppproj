@@ -132,6 +132,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="LcdDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LcdDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="MegaTest.cpp">
       <SubType>compile</SubType>
     </Compile>

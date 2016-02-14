@@ -37,6 +37,7 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../LcdDriver.cpp \
 ../MegaTest.cpp \
 ../SerialTxRx.cpp \
 ../Servo.cpp
@@ -49,21 +50,25 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+LcdDriver.o \
 MegaTest.o \
 SerialTxRx.o \
 Servo.o
 
 OBJS_AS_ARGS +=  \
+LcdDriver.o \
 MegaTest.o \
 SerialTxRx.o \
 Servo.o
 
 C_DEPS +=  \
+LcdDriver.d \
 MegaTest.d \
 SerialTxRx.d \
 Servo.d
 
 C_DEPS_AS_ARGS +=  \
+LcdDriver.d \
 MegaTest.d \
 SerialTxRx.d \
 Servo.d
@@ -82,6 +87,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

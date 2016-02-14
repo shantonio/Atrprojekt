@@ -3,29 +3,29 @@ MegaTest.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000008  00800200  00000326  000003ba  2**0
+  0 .data         00000014  00800200  000004be  00000552  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000326  00000000  00000000  00000094  2**1
+  1 .text         000004be  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000005  00800208  00800208  000003c2  2**0
+  2 .bss          00000008  00800214  00800214  00000566  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000003c2  2**0
+  3 .comment      00000030  00000000  00000000  00000566  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 00000088  00000000  00000000  000003f2  2**0
+  4 .debug_aranges 00000108  00000000  00000000  00000596  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   000007d5  00000000  00000000  0000047a  2**0
+  5 .debug_info   00001823  00000000  00000000  0000069e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000043a  00000000  00000000  00000c4f  2**0
+  6 .debug_abbrev 000006bc  00000000  00000000  00001ec1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000039e  00000000  00000000  00001089  2**0
+  7 .debug_line   000008c3  00000000  00000000  0000257d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  0000010c  00000000  00000000  00001428  2**2
+  8 .debug_frame  0000027c  00000000  00000000  00002e40  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003df  00000000  00000000  00001534  2**0
+  9 .debug_str    0000061d  00000000  00000000  000030bc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000229  00000000  00000000  00001913  2**0
+ 10 .debug_loc    00000a35  00000000  00000000  000036d9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000068  00000000  00000000  00001b3c  2**0
+ 11 .debug_ranges 000000d8  00000000  00000000  0000410e  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,7 +65,7 @@ Disassembly of section .text:
   3e:	00 00       	nop
   40:	81 c0       	rjmp	.+258    	; 0x144 <__bad_interrupt>
   42:	00 00       	nop
-  44:	b3 c0       	rjmp	.+358    	; 0x1ac <__vector_17>
+  44:	b6 c1       	rjmp	.+876    	; 0x3b2 <__vector_17>
   46:	00 00       	nop
   48:	7d c0       	rjmp	.+250    	; 0x144 <__bad_interrupt>
   4a:	00 00       	nop
@@ -147,10 +147,10 @@ Disassembly of section .text:
 	...
 
 000000e4 <__ctors_start>:
-  e4:	f8 00       	.word	0x00f8	; ????
+  e4:	fb 01       	movw	r30, r22
 
 000000e6 <__ctors_end>:
-  e6:	fe 00       	.word	0x00fe	; ????
+  e6:	01 02       	muls	r16, r17
 
 000000e8 <__dtors_end>:
   e8:	11 24       	eor	r1, r1
@@ -166,20 +166,20 @@ Disassembly of section .text:
   f8:	12 e0       	ldi	r17, 0x02	; 2
   fa:	a0 e0       	ldi	r26, 0x00	; 0
   fc:	b2 e0       	ldi	r27, 0x02	; 2
-  fe:	e6 e2       	ldi	r30, 0x26	; 38
- 100:	f3 e0       	ldi	r31, 0x03	; 3
+  fe:	ee eb       	ldi	r30, 0xBE	; 190
+ 100:	f4 e0       	ldi	r31, 0x04	; 4
  102:	00 e0       	ldi	r16, 0x00	; 0
  104:	0b bf       	out	0x3b, r16	; 59
  106:	02 c0       	rjmp	.+4      	; 0x10c <__do_copy_data+0x14>
  108:	07 90       	elpm	r0, Z+
  10a:	0d 92       	st	X+, r0
- 10c:	a8 30       	cpi	r26, 0x08	; 8
+ 10c:	a4 31       	cpi	r26, 0x14	; 20
  10e:	b1 07       	cpc	r27, r17
  110:	d9 f7       	brne	.-10     	; 0x108 <__do_copy_data+0x10>
 
 00000112 <__do_clear_bss>:
  112:	22 e0       	ldi	r18, 0x02	; 2
- 114:	a8 e0       	ldi	r26, 0x08	; 8
+ 114:	a4 e1       	ldi	r26, 0x14	; 20
  116:	b2 e0       	ldi	r27, 0x02	; 2
  118:	01 c0       	rjmp	.+2      	; 0x11c <.do_clear_bss_start>
 
@@ -187,7 +187,7 @@ Disassembly of section .text:
  11a:	1d 92       	st	X+, r1
 
 0000011c <.do_clear_bss_start>:
- 11c:	ad 30       	cpi	r26, 0x0D	; 13
+ 11c:	ac 31       	cpi	r26, 0x1C	; 28
  11e:	b2 07       	cpc	r27, r18
  120:	e1 f7       	brne	.-8      	; 0x11a <.do_clear_bss_loop>
 
@@ -201,401 +201,657 @@ Disassembly of section .text:
  12e:	01 09       	sbc	r16, r1
  130:	fe 01       	movw	r30, r28
  132:	0b bf       	out	0x3b, r16	; 59
- 134:	e3 d0       	rcall	.+454    	; 0x2fc <__tablejump_elpm__>
+ 134:	af d1       	rcall	.+862    	; 0x494 <__tablejump_elpm__>
  136:	c4 3e       	cpi	r28, 0xE4	; 228
  138:	d1 07       	cpc	r29, r17
  13a:	80 e0       	ldi	r24, 0x00	; 0
  13c:	08 07       	cpc	r16, r24
  13e:	b1 f7       	brne	.-20     	; 0x12c <__do_global_ctors+0xa>
- 140:	13 d0       	rcall	.+38     	; 0x168 <main>
- 142:	e0 c0       	rjmp	.+448    	; 0x304 <__do_global_dtors>
+ 140:	a6 d0       	rcall	.+332    	; 0x28e <main>
+ 142:	ac c1       	rjmp	.+856    	; 0x49c <__do_global_dtors>
 
 00000144 <__bad_interrupt>:
  144:	5d cf       	rjmp	.-326    	; 0x0 <__vectors>
 
-00000146 <_Z10initTimer1v>:
-//sei();										// Set I-Bit in status register (SREG).
-//OCR0A = 16;									// For 1ms Output Compare Register 
-//}
+00000146 <_ZN9LcdDriver10lcd_enableEv>:
+	
+	for( uint8_t i = len; i; i-- ){
+		lcd_data( _toChar( (value%div)*10/div ) );
+		div /= 10;
+	}
+}
+ 146:	13 9a       	sbi	0x02, 3	; 2
+ 148:	8a e6       	ldi	r24, 0x6A	; 106
+ 14a:	8a 95       	dec	r24
+ 14c:	f1 f7       	brne	.-4      	; 0x14a <_ZN9LcdDriver10lcd_enableEv+0x4>
+ 14e:	00 c0       	rjmp	.+0      	; 0x150 <_ZN9LcdDriver10lcd_enableEv+0xa>
+ 150:	13 98       	cbi	0x02, 3	; 2
+ 152:	08 95       	ret
 
-void initTimer1(){						// 16 Bit Timer
-	  DDRB |= (1<<PB4);
- 146:	24 9a       	sbi	0x04, 4	; 4
-	TCCR1B |= (1 << WGM12)|(1 << CS12) | (1 << CS10);	//prescalar at 1024 and Set CTC MODE siehe datenBlatt 
- 148:	e1 e8       	ldi	r30, 0x81	; 129
- 14a:	f0 e0       	ldi	r31, 0x00	; 0
- 14c:	80 81       	ld	r24, Z
- 14e:	8d 60       	ori	r24, 0x0D	; 13
- 150:	80 83       	st	Z, r24
-	sei();												// Set I-Bit in status register (SREG).
- 152:	78 94       	sei
-	OCR1A = 156;										// For 10ms Output Compare Register 
- 154:	8c e9       	ldi	r24, 0x9C	; 156
- 156:	90 e0       	ldi	r25, 0x00	; 0
- 158:	90 93 89 00 	sts	0x0089, r25
- 15c:	80 93 88 00 	sts	0x0088, r24
-	TIMSK1 = (1 << OCIE1A);								// Set Timer Interrupt Mask
- 160:	82 e0       	ldi	r24, 0x02	; 2
- 162:	80 93 6f 00 	sts	0x006F, r24
- 166:	08 95       	ret
+00000154 <_ZN9LcdDriver7lcd_outEh>:
+ 154:	22 b1       	in	r18, 0x02	; 2
+ 156:	2f 70       	andi	r18, 0x0F	; 15
+ 158:	22 b9       	out	0x02, r18	; 2
+ 15a:	22 b1       	in	r18, 0x02	; 2
+ 15c:	60 7f       	andi	r22, 0xF0	; 240
+ 15e:	62 2b       	or	r22, r18
+ 160:	62 b9       	out	0x02, r22	; 2
+ 162:	f1 cf       	rjmp	.-30     	; 0x146 <_ZN9LcdDriver10lcd_enableEv>
+ 164:	08 95       	ret
 
-00000168 <main>:
-											
+00000166 <_ZN9LcdDriver8lcd_dataEh>:
+ 166:	1f 93       	push	r17
+ 168:	cf 93       	push	r28
+ 16a:	df 93       	push	r29
+ 16c:	ec 01       	movw	r28, r24
+ 16e:	16 2f       	mov	r17, r22
+ 170:	12 9a       	sbi	0x02, 2	; 2
+ 172:	f0 df       	rcall	.-32     	; 0x154 <_ZN9LcdDriver7lcd_outEh>
+ 174:	61 2f       	mov	r22, r17
+ 176:	62 95       	swap	r22
+ 178:	60 7f       	andi	r22, 0xF0	; 240
+ 17a:	ce 01       	movw	r24, r28
+ 17c:	eb df       	rcall	.-42     	; 0x154 <_ZN9LcdDriver7lcd_outEh>
+ 17e:	85 ef       	ldi	r24, 0xF5	; 245
+ 180:	8a 95       	dec	r24
+ 182:	f1 f7       	brne	.-4      	; 0x180 <_ZN9LcdDriver8lcd_dataEh+0x1a>
+ 184:	00 00       	nop
+ 186:	df 91       	pop	r29
+ 188:	cf 91       	pop	r28
+ 18a:	1f 91       	pop	r17
+ 18c:	08 95       	ret
+
+0000018e <_ZN9LcdDriver12LCD_printStrEPc>:
+ 18e:	0f 93       	push	r16
+ 190:	1f 93       	push	r17
+ 192:	cf 93       	push	r28
+ 194:	df 93       	push	r29
+ 196:	8c 01       	movw	r16, r24
+ 198:	eb 01       	movw	r28, r22
+ 19a:	68 81       	ld	r22, Y
+ 19c:	66 23       	and	r22, r22
+ 19e:	31 f0       	breq	.+12     	; 0x1ac <_ZN9LcdDriver12LCD_printStrEPc+0x1e>
+ 1a0:	21 96       	adiw	r28, 0x01	; 1
+ 1a2:	c8 01       	movw	r24, r16
+ 1a4:	e0 df       	rcall	.-64     	; 0x166 <_ZN9LcdDriver8lcd_dataEh>
+ 1a6:	69 91       	ld	r22, Y+
+ 1a8:	61 11       	cpse	r22, r1
+ 1aa:	fb cf       	rjmp	.-10     	; 0x1a2 <_ZN9LcdDriver12LCD_printStrEPc+0x14>
+ 1ac:	df 91       	pop	r29
+ 1ae:	cf 91       	pop	r28
+ 1b0:	1f 91       	pop	r17
+ 1b2:	0f 91       	pop	r16
+ 1b4:	08 95       	ret
+
+000001b6 <_ZN9LcdDriver11lcd_commandEh>:
+	_delay_us( LCD_WRITEDATA_US );
 }
 
 
-int main(void)
-{	  DDRB |= (1<<PB7); // LED ON/OFF Arduino PIN 13
- 168:	27 9a       	sbi	0x04, 7	; 4
-	//Servo servo1_2(90);
-	//servo1_2.initTimer1PWM();
+// Sendet einen Befehl an das LCD
+void LcdDriver::lcd_command(uint8_t _command){
+ 1b6:	1f 93       	push	r17
+ 1b8:	cf 93       	push	r28
+ 1ba:	df 93       	push	r29
+ 1bc:	ec 01       	movw	r28, r24
+ 1be:	16 2f       	mov	r17, r22
 	
-	//initTimer0();
-	initTimer1();
- 16a:	ed df       	rcall	.-38     	; 0x146 <_Z10initTimer1v>
+	LCD_PORT &= ~(1<<LCD_RS);			 // RS auf 0 setzen
+ 1c0:	12 98       	cbi	0x02, 2	; 2
 	
-		print.Init_USART();
- 16c:	88 e0       	ldi	r24, 0x08	; 8
- 16e:	92 e0       	ldi	r25, 0x02	; 2
- 170:	6b d0       	rcall	.+214    	; 0x248 <_ZN10SerialTxRx10Init_USARTEv>
-	
-	
-	
-	while(1)
-	{
-		u8TempData = print.USART_receive(); // Wenn nix eingegebn dann warter er in funktion
- 172:	88 e0       	ldi	r24, 0x08	; 8
- 174:	92 e0       	ldi	r25, 0x02	; 2
- 176:	79 d0       	rcall	.+242    	; 0x26a <_ZN10SerialTxRx13USART_receiveEv>
-		u8TempData++;
- 178:	61 e0       	ldi	r22, 0x01	; 1
- 17a:	68 0f       	add	r22, r24
- 17c:	60 93 0a 02 	sts	0x020A, r22
-		print.USART_send(u8TempData);
- 180:	88 e0       	ldi	r24, 0x08	; 8
- 182:	92 e0       	ldi	r25, 0x02	; 2
- 184:	7c d0       	rcall	.+248    	; 0x27e <_ZN10SerialTxRx10USART_sendEh>
-		print.USART_send('\n');
- 186:	6a e0       	ldi	r22, 0x0A	; 10
- 188:	88 e0       	ldi	r24, 0x08	; 8
- 18a:	92 e0       	ldi	r25, 0x02	; 2
- 18c:	78 d0       	rcall	.+240    	; 0x27e <_ZN10SerialTxRx10USART_sendEh>
-		print.USART_putstring(Servo0);
- 18e:	60 e0       	ldi	r22, 0x00	; 0
- 190:	72 e0       	ldi	r23, 0x02	; 2
- 192:	88 e0       	ldi	r24, 0x08	; 8
- 194:	92 e0       	ldi	r25, 0x02	; 2
- 196:	7b d0       	rcall	.+246    	; 0x28e <_ZN10SerialTxRx15USART_putstringEPc>
+	lcd_out( _command );				 // zuerst die oberen,
+ 1c2:	c8 df       	rcall	.-112    	; 0x154 <_ZN9LcdDriver7lcd_outEh>
+	lcd_out( _command<<4 );				 // dann die unteren 4 Bit senden
+ 1c4:	61 2f       	mov	r22, r17
+ 1c6:	62 95       	swap	r22
+ 1c8:	60 7f       	andi	r22, 0xF0	; 240
+ 1ca:	ce 01       	movw	r24, r28
+ 1cc:	c3 df       	rcall	.-122    	; 0x154 <_ZN9LcdDriver7lcd_outEh>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 198:	2f ef       	ldi	r18, 0xFF	; 255
- 19a:	83 ec       	ldi	r24, 0xC3	; 195
- 19c:	99 e0       	ldi	r25, 0x09	; 9
- 19e:	21 50       	subi	r18, 0x01	; 1
- 1a0:	80 40       	sbci	r24, 0x00	; 0
- 1a2:	90 40       	sbci	r25, 0x00	; 0
- 1a4:	e1 f7       	brne	.-8      	; 0x19e <main+0x36>
- 1a6:	00 c0       	rjmp	.+0      	; 0x1a8 <main+0x40>
- 1a8:	00 00       	nop
- 1aa:	e3 cf       	rjmp	.-58     	; 0x172 <main+0xa>
+ 1ce:	80 ee       	ldi	r24, 0xE0	; 224
+ 1d0:	8a 95       	dec	r24
+ 1d2:	f1 f7       	brne	.-4      	; 0x1d0 <_ZN9LcdDriver11lcd_commandEh+0x1a>
+	
+	_delay_us( LCD_COMMAND_US );
+}
+ 1d4:	df 91       	pop	r29
+ 1d6:	cf 91       	pop	r28
+ 1d8:	1f 91       	pop	r17
+ 1da:	08 95       	ret
 
-000001ac <__vector_17>:
+000001dc <_ZN9LcdDriver7LCD_clrEv>:
+
+void LcdDriver::LCD_clr(){
+	lcd_command(0b00000001);
+ 1dc:	61 e0       	ldi	r22, 0x01	; 1
+ 1de:	eb df       	rcall	.-42     	; 0x1b6 <_ZN9LcdDriver11lcd_commandEh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1e0:	8f e3       	ldi	r24, 0x3F	; 63
+ 1e2:	9f e1       	ldi	r25, 0x1F	; 31
+ 1e4:	01 97       	sbiw	r24, 0x01	; 1
+ 1e6:	f1 f7       	brne	.-4      	; 0x1e4 <_ZN9LcdDriver7LCD_clrEv+0x8>
+ 1e8:	00 c0       	rjmp	.+0      	; 0x1ea <_ZN9LcdDriver7LCD_clrEv+0xe>
+ 1ea:	00 00       	nop
+ 1ec:	08 95       	ret
+
+000001ee <_ZN9LcdDriver10LCD_gotoXYEhh>:
+////////////////////////////////////////////////////////////////////////////////
+// Setzt den Cursor in Spalte x (0..15) Zeile y (0..3)
+void LcdDriver::LCD_gotoXY( uint8_t x, uint8_t y ){
+	uint8_t data;
+
+	switch (y)
+ 1ee:	41 30       	cpi	r20, 0x01	; 1
+ 1f0:	41 f0       	breq	.+16     	; 0x202 <_ZN9LcdDriver10LCD_gotoXYEhh+0x14>
+ 1f2:	28 f0       	brcs	.+10     	; 0x1fe <_ZN9LcdDriver10LCD_gotoXYEhh+0x10>
+ 1f4:	42 30       	cpi	r20, 0x02	; 2
+ 1f6:	39 f0       	breq	.+14     	; 0x206 <_ZN9LcdDriver10LCD_gotoXYEhh+0x18>
+ 1f8:	43 30       	cpi	r20, 0x03	; 3
+ 1fa:	39 f0       	breq	.+14     	; 0x20a <_ZN9LcdDriver10LCD_gotoXYEhh+0x1c>
+ 1fc:	08 95       	ret
+	{
+		case 0:    // 1. Zeile
+		data = LCD_SET_DDADR + LCD_DDADR_LINE1 + x;
+ 1fe:	60 58       	subi	r22, 0x80	; 128
+		break;
+ 200:	05 c0       	rjmp	.+10     	; 0x20c <_ZN9LcdDriver10LCD_gotoXYEhh+0x1e>
+		
+		case 1:    // 2. Zeile
+		data = LCD_SET_DDADR + LCD_DDADR_LINE2 + x;
+ 202:	60 54       	subi	r22, 0x40	; 64
+		break;
+ 204:	03 c0       	rjmp	.+6      	; 0x20c <_ZN9LcdDriver10LCD_gotoXYEhh+0x1e>
+		
+		case 2:    // 3. Zeile
+		data = LCD_SET_DDADR + LCD_DDADR_LINE3 + x;
+ 206:	60 57       	subi	r22, 0x70	; 112
+		break;
+ 208:	01 c0       	rjmp	.+2      	; 0x20c <_ZN9LcdDriver10LCD_gotoXYEhh+0x1e>
+		
+		case 3:    // 4. Zeile
+		data = LCD_SET_DDADR + LCD_DDADR_LINE4 + x;
+ 20a:	60 53       	subi	r22, 0x30	; 48
+		
+		default:
+		return;                                   // Falls Falsche zeile eingegeben wird
+	}
+	
+	lcd_command( data );
+ 20c:	d4 cf       	rjmp	.-88     	; 0x1b6 <_ZN9LcdDriver11lcd_commandEh>
+ 20e:	08 95       	ret
+
+00000210 <_ZN9LcdDriver8LCD_initEv>:
+LcdDriver::~LcdDriver()
+{
+} //~LcdDriver
+
+
+void LcdDriver::LCD_init(){							//Hardware PIN : Symbol
+ 210:	cf 93       	push	r28
+ 212:	df 93       	push	r29
+ 214:	ec 01       	movw	r28, r24
+	LCD_DDR	|= 1 << LCD_RS;							// LCD_Pin 4   : RS (Register Select)
+ 216:	0a 9a       	sbi	0x01, 2	; 1
+	LCD_DDR	|= 1 << LCD_EN;							// LCD_Pin 6   : E  (ENABLE)
+ 218:	0b 9a       	sbi	0x01, 3	; 1
+	LCD_DDR	|= 1 << LCD_D4;							// LCD_Pin 11  : D4 (Data 4)
+ 21a:	0c 9a       	sbi	0x01, 4	; 1
+	LCD_DDR	|= 1 << LCD_D5;							// LCD_Pin 12  : D5 (Data 5)
+ 21c:	0d 9a       	sbi	0x01, 5	; 1
+	LCD_DDR	|= 1 << LCD_D6;							// LCD_Pin 13  : D6 (Data 6)
+ 21e:	0e 9a       	sbi	0x01, 6	; 1
+	LCD_DDR	|= 1 << LCD_D7;							// LCD_Pin 14  : D7 (Data 7)
+ 220:	0f 9a       	sbi	0x01, 7	; 1
+ 222:	8f e5       	ldi	r24, 0x5F	; 95
+ 224:	9a ee       	ldi	r25, 0xEA	; 234
+ 226:	01 97       	sbiw	r24, 0x01	; 1
+ 228:	f1 f7       	brne	.-4      	; 0x226 <_ZN9LcdDriver8LCD_initEv+0x16>
+ 22a:	00 c0       	rjmp	.+0      	; 0x22c <_ZN9LcdDriver8LCD_initEv+0x1c>
+ 22c:	00 00       	nop
+
+	// warten auf die Bereitschaft des LCD
+	_delay_ms( LCD_BOOTUP_MS );
+	
+	// Soft-Reset muss 3mal hintereinander gesendet werden zur Initialisierung
+	lcd_out( LCD_SOFT_RESET );
+ 22e:	60 e3       	ldi	r22, 0x30	; 48
+ 230:	ce 01       	movw	r24, r28
+ 232:	90 df       	rcall	.-224    	; 0x154 <_ZN9LcdDriver7lcd_outEh>
+ 234:	8f e1       	ldi	r24, 0x1F	; 31
+ 236:	9e e4       	ldi	r25, 0x4E	; 78
+ 238:	01 97       	sbiw	r24, 0x01	; 1
+ 23a:	f1 f7       	brne	.-4      	; 0x238 <_ZN9LcdDriver8LCD_initEv+0x28>
+ 23c:	00 c0       	rjmp	.+0      	; 0x23e <_ZN9LcdDriver8LCD_initEv+0x2e>
+ 23e:	00 00       	nop
+	_delay_ms( LCD_SOFT_RESET_MS1 );
+	
+	lcd_enable();
+ 240:	ce 01       	movw	r24, r28
+ 242:	81 df       	rcall	.-254    	; 0x146 <_ZN9LcdDriver10lcd_enableEv>
+ 244:	8f e9       	ldi	r24, 0x9F	; 159
+ 246:	9f e0       	ldi	r25, 0x0F	; 15
+ 248:	01 97       	sbiw	r24, 0x01	; 1
+ 24a:	f1 f7       	brne	.-4      	; 0x248 <_ZN9LcdDriver8LCD_initEv+0x38>
+ 24c:	00 c0       	rjmp	.+0      	; 0x24e <_ZN9LcdDriver8LCD_initEv+0x3e>
+ 24e:	00 00       	nop
+	_delay_ms( LCD_SOFT_RESET_MS2 );
+	
+	lcd_enable();
+ 250:	ce 01       	movw	r24, r28
+ 252:	79 df       	rcall	.-270    	; 0x146 <_ZN9LcdDriver10lcd_enableEv>
+ 254:	8f e9       	ldi	r24, 0x9F	; 159
+ 256:	9f e0       	ldi	r25, 0x0F	; 15
+ 258:	01 97       	sbiw	r24, 0x01	; 1
+ 25a:	f1 f7       	brne	.-4      	; 0x258 <_ZN9LcdDriver8LCD_initEv+0x48>
+ 25c:	00 c0       	rjmp	.+0      	; 0x25e <_ZN9LcdDriver8LCD_initEv+0x4e>
+ 25e:	00 00       	nop
+	_delay_ms( LCD_SOFT_RESET_MS3 );
+	
+	// 4-bit Modus aktivieren
+	lcd_out( LCD_SET_FUNCTION |
+	LCD_FUNCTION_4BIT );
+ 260:	60 e2       	ldi	r22, 0x20	; 32
+ 262:	ce 01       	movw	r24, r28
+ 264:	77 df       	rcall	.-274    	; 0x154 <_ZN9LcdDriver7lcd_outEh>
+ 266:	8f e1       	ldi	r24, 0x1F	; 31
+ 268:	9e e4       	ldi	r25, 0x4E	; 78
+ 26a:	01 97       	sbiw	r24, 0x01	; 1
+ 26c:	f1 f7       	brne	.-4      	; 0x26a <_ZN9LcdDriver8LCD_initEv+0x5a>
+ 26e:	00 c0       	rjmp	.+0      	; 0x270 <_ZN9LcdDriver8LCD_initEv+0x60>
+ 270:	00 00       	nop
+	
+	// 4-bit Modus / 2 Zeilen / 5x7
+	lcd_command( LCD_SET_FUNCTION |
+	LCD_FUNCTION_4BIT |
+	LCD_FUNCTION_2LINE |
+	LCD_FUNCTION_5X7 );
+ 272:	68 e2       	ldi	r22, 0x28	; 40
+ 274:	ce 01       	movw	r24, r28
+ 276:	9f df       	rcall	.-194    	; 0x1b6 <_ZN9LcdDriver11lcd_commandEh>
+	
+	// Display ein / Cursor aus / Blinken aus
+	lcd_command( LCD_SET_DISPLAY |
+	LCD_DISPLAY_ON  |
+	LCD_CURSOR_OFF  |
+	LCD_BLINKING_OFF);
+ 278:	6c e0       	ldi	r22, 0x0C	; 12
+ 27a:	ce 01       	movw	r24, r28
+ 27c:	9c df       	rcall	.-200    	; 0x1b6 <_ZN9LcdDriver11lcd_commandEh>
+	
+	// Cursor inkrement / kein Scrollen
+	lcd_command( LCD_SET_ENTRY |
+	LCD_ENTRY_INCREASE |
+	LCD_ENTRY_NOSHIFT );
+ 27e:	66 e0       	ldi	r22, 0x06	; 6
+ 280:	ce 01       	movw	r24, r28
+ 282:	99 df       	rcall	.-206    	; 0x1b6 <_ZN9LcdDriver11lcd_commandEh>
+	
+	LCD_clr();
+ 284:	ce 01       	movw	r24, r28
+ 286:	aa df       	rcall	.-172    	; 0x1dc <_ZN9LcdDriver7LCD_clrEv>
+}
+ 288:	df 91       	pop	r29
+ 28a:	cf 91       	pop	r28
+ 28c:	08 95       	ret
+
+0000028e <main>:
+											
+}
+
+
+int main(void)
+{	  DDRB |= (1<<PB7); // LED ON/OFF Arduino PIN 13 // PinMODE OUTPUT
+ 28e:	27 9a       	sbi	0x04, 7	; 4
+	//Servo servo1_2(90);
+	//servo1_2.initTimer1PWM();
+	
+	//initTimer0();
+	display->LCD_init();
+ 290:	80 91 14 02 	lds	r24, 0x0214
+ 294:	90 91 15 02 	lds	r25, 0x0215
+ 298:	bb df       	rcall	.-138    	; 0x210 <_ZN9LcdDriver8LCD_initEv>
+	display->LCD_clr();
+ 29a:	80 91 14 02 	lds	r24, 0x0214
+ 29e:	90 91 15 02 	lds	r25, 0x0215
+ 2a2:	9c df       	rcall	.-200    	; 0x1dc <_ZN9LcdDriver7LCD_clrEv>
+		//strcat (Servo0,"\n");
+
+	//print.USART_putstring(Servo1);
+	
+	  
+		display->LCD_gotoXY(0,0);
+ 2a4:	40 e0       	ldi	r20, 0x00	; 0
+ 2a6:	60 e0       	ldi	r22, 0x00	; 0
+ 2a8:	80 91 14 02 	lds	r24, 0x0214
+ 2ac:	90 91 15 02 	lds	r25, 0x0215
+ 2b0:	9e df       	rcall	.-196    	; 0x1ee <_ZN9LcdDriver10LCD_gotoXYEhh>
+ 2b2:	2f ef       	ldi	r18, 0xFF	; 255
+ 2b4:	81 ee       	ldi	r24, 0xE1	; 225
+ 2b6:	94 e0       	ldi	r25, 0x04	; 4
+ 2b8:	21 50       	subi	r18, 0x01	; 1
+ 2ba:	80 40       	sbci	r24, 0x00	; 0
+ 2bc:	90 40       	sbci	r25, 0x00	; 0
+ 2be:	e1 f7       	brne	.-8      	; 0x2b8 <main+0x2a>
+ 2c0:	00 c0       	rjmp	.+0      	; 0x2c2 <main+0x34>
+ 2c2:	00 00       	nop
+		_delay_ms(100);
+		display->LCD_printStr(teststr0);
+ 2c4:	6f e0       	ldi	r22, 0x0F	; 15
+ 2c6:	72 e0       	ldi	r23, 0x02	; 2
+ 2c8:	80 91 14 02 	lds	r24, 0x0214
+ 2cc:	90 91 15 02 	lds	r25, 0x0215
+ 2d0:	5e df       	rcall	.-324    	; 0x18e <_ZN9LcdDriver12LCD_printStrEPc>
+ 2d2:	2f ef       	ldi	r18, 0xFF	; 255
+ 2d4:	83 ed       	ldi	r24, 0xD3	; 211
+ 2d6:	90 e3       	ldi	r25, 0x30	; 48
+ 2d8:	21 50       	subi	r18, 0x01	; 1
+ 2da:	80 40       	sbci	r24, 0x00	; 0
+ 2dc:	90 40       	sbci	r25, 0x00	; 0
+ 2de:	e1 f7       	brne	.-8      	; 0x2d8 <main+0x4a>
+ 2e0:	00 c0       	rjmp	.+0      	; 0x2e2 <main+0x54>
+ 2e2:	00 00       	nop
+		_delay_ms(1000);
+		
+		display->LCD_gotoXY(1,1);
+ 2e4:	41 e0       	ldi	r20, 0x01	; 1
+ 2e6:	61 e0       	ldi	r22, 0x01	; 1
+ 2e8:	80 91 14 02 	lds	r24, 0x0214
+ 2ec:	90 91 15 02 	lds	r25, 0x0215
+ 2f0:	7e df       	rcall	.-260    	; 0x1ee <_ZN9LcdDriver10LCD_gotoXYEhh>
+ 2f2:	2f ef       	ldi	r18, 0xFF	; 255
+ 2f4:	81 ee       	ldi	r24, 0xE1	; 225
+ 2f6:	94 e0       	ldi	r25, 0x04	; 4
+ 2f8:	21 50       	subi	r18, 0x01	; 1
+ 2fa:	80 40       	sbci	r24, 0x00	; 0
+ 2fc:	90 40       	sbci	r25, 0x00	; 0
+ 2fe:	e1 f7       	brne	.-8      	; 0x2f8 <main+0x6a>
+ 300:	00 c0       	rjmp	.+0      	; 0x302 <main+0x74>
+ 302:	00 00       	nop
+		_delay_ms(100);
+		display->LCD_printStr(teststr1);
+ 304:	6a e0       	ldi	r22, 0x0A	; 10
+ 306:	72 e0       	ldi	r23, 0x02	; 2
+ 308:	80 91 14 02 	lds	r24, 0x0214
+ 30c:	90 91 15 02 	lds	r25, 0x0215
+ 310:	3e df       	rcall	.-388    	; 0x18e <_ZN9LcdDriver12LCD_printStrEPc>
+ 312:	2f ef       	ldi	r18, 0xFF	; 255
+ 314:	83 ed       	ldi	r24, 0xD3	; 211
+ 316:	90 e3       	ldi	r25, 0x30	; 48
+ 318:	21 50       	subi	r18, 0x01	; 1
+ 31a:	80 40       	sbci	r24, 0x00	; 0
+ 31c:	90 40       	sbci	r25, 0x00	; 0
+ 31e:	e1 f7       	brne	.-8      	; 0x318 <main+0x8a>
+ 320:	00 c0       	rjmp	.+0      	; 0x322 <main+0x94>
+ 322:	00 00       	nop
+		_delay_ms(1000);
+		
+		display->LCD_gotoXY(2,2);
+ 324:	42 e0       	ldi	r20, 0x02	; 2
+ 326:	62 e0       	ldi	r22, 0x02	; 2
+ 328:	80 91 14 02 	lds	r24, 0x0214
+ 32c:	90 91 15 02 	lds	r25, 0x0215
+ 330:	5e df       	rcall	.-324    	; 0x1ee <_ZN9LcdDriver10LCD_gotoXYEhh>
+ 332:	2f ef       	ldi	r18, 0xFF	; 255
+ 334:	81 ee       	ldi	r24, 0xE1	; 225
+ 336:	94 e0       	ldi	r25, 0x04	; 4
+ 338:	21 50       	subi	r18, 0x01	; 1
+ 33a:	80 40       	sbci	r24, 0x00	; 0
+ 33c:	90 40       	sbci	r25, 0x00	; 0
+ 33e:	e1 f7       	brne	.-8      	; 0x338 <main+0xaa>
+ 340:	00 c0       	rjmp	.+0      	; 0x342 <main+0xb4>
+ 342:	00 00       	nop
+		_delay_ms(100);
+		display->LCD_printStr(teststr2);
+ 344:	65 e0       	ldi	r22, 0x05	; 5
+ 346:	72 e0       	ldi	r23, 0x02	; 2
+ 348:	80 91 14 02 	lds	r24, 0x0214
+ 34c:	90 91 15 02 	lds	r25, 0x0215
+ 350:	1e df       	rcall	.-452    	; 0x18e <_ZN9LcdDriver12LCD_printStrEPc>
+ 352:	2f ef       	ldi	r18, 0xFF	; 255
+ 354:	83 ed       	ldi	r24, 0xD3	; 211
+ 356:	90 e3       	ldi	r25, 0x30	; 48
+ 358:	21 50       	subi	r18, 0x01	; 1
+ 35a:	80 40       	sbci	r24, 0x00	; 0
+ 35c:	90 40       	sbci	r25, 0x00	; 0
+ 35e:	e1 f7       	brne	.-8      	; 0x358 <main+0xca>
+ 360:	00 c0       	rjmp	.+0      	; 0x362 <main+0xd4>
+ 362:	00 00       	nop
+		_delay_ms(1000);
+		
+			display->LCD_gotoXY(3,3);
+ 364:	43 e0       	ldi	r20, 0x03	; 3
+ 366:	63 e0       	ldi	r22, 0x03	; 3
+ 368:	80 91 14 02 	lds	r24, 0x0214
+ 36c:	90 91 15 02 	lds	r25, 0x0215
+ 370:	3e df       	rcall	.-388    	; 0x1ee <_ZN9LcdDriver10LCD_gotoXYEhh>
+ 372:	2f ef       	ldi	r18, 0xFF	; 255
+ 374:	81 ee       	ldi	r24, 0xE1	; 225
+ 376:	94 e0       	ldi	r25, 0x04	; 4
+ 378:	21 50       	subi	r18, 0x01	; 1
+ 37a:	80 40       	sbci	r24, 0x00	; 0
+ 37c:	90 40       	sbci	r25, 0x00	; 0
+ 37e:	e1 f7       	brne	.-8      	; 0x378 <main+0xea>
+ 380:	00 c0       	rjmp	.+0      	; 0x382 <main+0xf4>
+ 382:	00 00       	nop
+			_delay_ms(100);
+			display->LCD_printStr(teststr3);
+ 384:	60 e0       	ldi	r22, 0x00	; 0
+ 386:	72 e0       	ldi	r23, 0x02	; 2
+ 388:	80 91 14 02 	lds	r24, 0x0214
+ 38c:	90 91 15 02 	lds	r25, 0x0215
+ 390:	fe de       	rcall	.-516    	; 0x18e <_ZN9LcdDriver12LCD_printStrEPc>
+ 392:	2f ef       	ldi	r18, 0xFF	; 255
+ 394:	83 ed       	ldi	r24, 0xD3	; 211
+ 396:	90 e3       	ldi	r25, 0x30	; 48
+ 398:	21 50       	subi	r18, 0x01	; 1
+ 39a:	80 40       	sbci	r24, 0x00	; 0
+ 39c:	90 40       	sbci	r25, 0x00	; 0
+ 39e:	e1 f7       	brne	.-8      	; 0x398 <main+0x10a>
+ 3a0:	00 c0       	rjmp	.+0      	; 0x3a2 <main+0x114>
+ 3a2:	00 00       	nop
+			_delay_ms(1000);
+
+
+	cZahl = 100;
+ 3a4:	84 e6       	ldi	r24, 0x64	; 100
+ 3a6:	90 e0       	ldi	r25, 0x00	; 0
+ 3a8:	90 93 19 02 	sts	0x0219, r25
+ 3ac:	80 93 18 02 	sts	0x0218, r24
+ 3b0:	ff cf       	rjmp	.-2      	; 0x3b0 <main+0x122>
+
+000003b2 <__vector_17>:
 	}
 }	// END OF Interrupt Timer0
 */
 
 ISR(TIMER1_COMPA_vect)    
 {
- 1ac:	1f 92       	push	r1
- 1ae:	0f 92       	push	r0
- 1b0:	0f b6       	in	r0, 0x3f	; 63
- 1b2:	0f 92       	push	r0
- 1b4:	11 24       	eor	r1, r1
- 1b6:	8f 93       	push	r24
- 1b8:	9f 93       	push	r25
+ 3b2:	1f 92       	push	r1
+ 3b4:	0f 92       	push	r0
+ 3b6:	0f b6       	in	r0, 0x3f	; 63
+ 3b8:	0f 92       	push	r0
+ 3ba:	11 24       	eor	r1, r1
+ 3bc:	8f 93       	push	r24
+ 3be:	9f 93       	push	r25
 	extraTime1++;
- 1ba:	80 91 0b 02 	lds	r24, 0x020B
- 1be:	90 91 0c 02 	lds	r25, 0x020C
- 1c2:	01 96       	adiw	r24, 0x01	; 1
+ 3c0:	80 91 1a 02 	lds	r24, 0x021A
+ 3c4:	90 91 1b 02 	lds	r25, 0x021B
+ 3c8:	01 96       	adiw	r24, 0x01	; 1
 	
 	if(extraTime1 >= 100){
- 1c4:	84 36       	cpi	r24, 0x64	; 100
- 1c6:	91 05       	cpc	r25, r1
- 1c8:	2c f4       	brge	.+10     	; 0x1d4 <__vector_17+0x28>
+ 3ca:	84 36       	cpi	r24, 0x64	; 100
+ 3cc:	91 05       	cpc	r25, r1
+ 3ce:	2c f4       	brge	.+10     	; 0x3da <__vector_17+0x28>
 }	// END OF Interrupt Timer0
 */
 
 ISR(TIMER1_COMPA_vect)    
 {
 	extraTime1++;
- 1ca:	90 93 0c 02 	sts	0x020C, r25
- 1ce:	80 93 0b 02 	sts	0x020B, r24
- 1d2:	07 c0       	rjmp	.+14     	; 0x1e2 <__vector_17+0x36>
+ 3d0:	90 93 1b 02 	sts	0x021B, r25
+ 3d4:	80 93 1a 02 	sts	0x021A, r24
+ 3d8:	07 c0       	rjmp	.+14     	; 0x3e8 <__vector_17+0x36>
 	
 	if(extraTime1 >= 100){
 		extraTime1 = 0;
- 1d4:	10 92 0c 02 	sts	0x020C, r1
- 1d8:	10 92 0b 02 	sts	0x020B, r1
+ 3da:	10 92 1b 02 	sts	0x021B, r1
+ 3de:	10 92 1a 02 	sts	0x021A, r1
 	//Toggle Port;
 		PORTB ^= (1 << PORTB7);   // Test Interrupt Timer1 LED ON/OFF Arduino PIN13
- 1dc:	85 b1       	in	r24, 0x05	; 5
- 1de:	80 58       	subi	r24, 0x80	; 128
- 1e0:	85 b9       	out	0x05, r24	; 5
+ 3e2:	85 b1       	in	r24, 0x05	; 5
+ 3e4:	80 58       	subi	r24, 0x80	; 128
+ 3e6:	85 b9       	out	0x05, r24	; 5
 		}
 }	// END OF Interrupt Timer1 
- 1e2:	9f 91       	pop	r25
- 1e4:	8f 91       	pop	r24
- 1e6:	0f 90       	pop	r0
- 1e8:	0f be       	out	0x3f, r0	; 63
- 1ea:	0f 90       	pop	r0
- 1ec:	1f 90       	pop	r1
- 1ee:	18 95       	reti
+ 3e8:	9f 91       	pop	r25
+ 3ea:	8f 91       	pop	r24
+ 3ec:	0f 90       	pop	r0
+ 3ee:	0f be       	out	0x3f, r0	; 63
+ 3f0:	0f 90       	pop	r0
+ 3f2:	1f 90       	pop	r1
+ 3f4:	18 95       	reti
 
-000001f0 <_GLOBAL__sub_I_extraTime>:
-int extraTime = 0;
-int extraTime1 = 0;
-char Servo0[]="s0:120\n";    //String[] is in fact an array but when we put the text between the " " symbols the compiler threats it as a String and automatically puts the null termination character in the end of the text
-char Servo1[]="s1:160\n";
+000003f6 <_GLOBAL__sub_I_extraTime>:
+char teststr2[5]="x2y2";
+char teststr3[5]="x3y3";
+uint16_t cZahl=0;
 unsigned char u8TempData=0;
+
 SerialTxRx print(9600);
- 1f0:	60 e8       	ldi	r22, 0x80	; 128
- 1f2:	75 e2       	ldi	r23, 0x25	; 37
- 1f4:	88 e0       	ldi	r24, 0x08	; 8
- 1f6:	92 e0       	ldi	r25, 0x02	; 2
- 1f8:	05 c0       	rjmp	.+10     	; 0x204 <_ZN10SerialTxRxC1Ej>
- 1fa:	08 95       	ret
+ 3f6:	60 e8       	ldi	r22, 0x80	; 128
+ 3f8:	75 e2       	ldi	r23, 0x25	; 37
+ 3fa:	86 e1       	ldi	r24, 0x16	; 22
+ 3fc:	92 e0       	ldi	r25, 0x02	; 2
+ 3fe:	05 c0       	rjmp	.+10     	; 0x40a <_ZN10SerialTxRxC1Ej>
+ 400:	08 95       	ret
 
-000001fc <_GLOBAL__sub_D_extraTime>:
- 1fc:	88 e0       	ldi	r24, 0x08	; 8
- 1fe:	92 e0       	ldi	r25, 0x02	; 2
- 200:	5a c0       	rjmp	.+180    	; 0x2b6 <_ZN10SerialTxRxD1Ev>
- 202:	08 95       	ret
+00000402 <_GLOBAL__sub_D_extraTime>:
+ 402:	86 e1       	ldi	r24, 0x16	; 22
+ 404:	92 e0       	ldi	r25, 0x02	; 2
+ 406:	23 c0       	rjmp	.+70     	; 0x44e <_ZN10SerialTxRxD1Ev>
+ 408:	08 95       	ret
 
-00000204 <_ZN10SerialTxRxC1Ej>:
-
-#include "SerialTxRx.h"
-
-
-// default constructor
- SerialTxRx::SerialTxRx(uint16_t Baundrate)
- 204:	cf 93       	push	r28
- 206:	df 93       	push	r29
- 208:	ec 01       	movw	r28, r24
- {
-	this->UBRR_VALUE= (((F_CPU / (Baundrate * 16UL))) - 1); // Formula  Datasheet Page 203 Tabelle 22-1
- 20a:	cb 01       	movw	r24, r22
- 20c:	a0 e0       	ldi	r26, 0x00	; 0
- 20e:	b0 e0       	ldi	r27, 0x00	; 0
- 210:	88 0f       	add	r24, r24
- 212:	99 1f       	adc	r25, r25
- 214:	aa 1f       	adc	r26, r26
- 216:	bb 1f       	adc	r27, r27
- 218:	88 0f       	add	r24, r24
- 21a:	99 1f       	adc	r25, r25
- 21c:	aa 1f       	adc	r26, r26
- 21e:	bb 1f       	adc	r27, r27
- 220:	9c 01       	movw	r18, r24
- 222:	ad 01       	movw	r20, r26
- 224:	22 0f       	add	r18, r18
- 226:	33 1f       	adc	r19, r19
- 228:	44 1f       	adc	r20, r20
- 22a:	55 1f       	adc	r21, r21
- 22c:	22 0f       	add	r18, r18
- 22e:	33 1f       	adc	r19, r19
- 230:	44 1f       	adc	r20, r20
- 232:	55 1f       	adc	r21, r21
- 234:	60 e0       	ldi	r22, 0x00	; 0
- 236:	74 e2       	ldi	r23, 0x24	; 36
- 238:	84 ef       	ldi	r24, 0xF4	; 244
- 23a:	90 e0       	ldi	r25, 0x00	; 0
- 23c:	3d d0       	rcall	.+122    	; 0x2b8 <__udivmodsi4>
- 23e:	21 50       	subi	r18, 0x01	; 1
- 240:	29 83       	std	Y+1, r18	; 0x01
-}//SerialTxRx
- 242:	df 91       	pop	r29
- 244:	cf 91       	pop	r28
- 246:	08 95       	ret
-
-00000248 <_ZN10SerialTxRx10Init_USARTEv>:
- {	
-	/*in AVR GCC we can simply assign UBRR_VALUE value to UBRR0 
-	OR UBRR0= UBRR_VALUE; 
-	and leave to compiler to take care of writing sequence.
-	*/
-	UBRR0H = UBRR_VALUE>>8;
- 248:	10 92 c5 00 	sts	0x00C5, r1
-	UBRR0L = UBRR_VALUE;
- 24c:	fc 01       	movw	r30, r24
- 24e:	81 81       	ldd	r24, Z+1	; 0x01
- 250:	80 93 c4 00 	sts	0x00C4, r24
-	USART Control and Status Register UCSR0C = 0b00000110 
-	*******************************************************
-	*/
-	
-	//enable transmission and reception
-	UCSR0B |= (1<<RXEN0)|(1<<TXEN0);
- 254:	e1 ec       	ldi	r30, 0xC1	; 193
- 256:	f0 e0       	ldi	r31, 0x00	; 0
- 258:	80 81       	ld	r24, Z
- 25a:	88 61       	ori	r24, 0x18	; 24
- 25c:	80 83       	st	Z, r24
-	UCSR0C |= (1<<UCSZ01)|(1<<UCSZ00);
- 25e:	e2 ec       	ldi	r30, 0xC2	; 194
- 260:	f0 e0       	ldi	r31, 0x00	; 0
- 262:	80 81       	ld	r24, Z
- 264:	86 60       	ori	r24, 0x06	; 6
- 266:	80 83       	st	Z, r24
- 268:	08 95       	ret
-
-0000026a <_ZN10SerialTxRx13USART_receiveEv>:
-	//enable global interrupts
-	
-}
-
-unsigned char SerialTxRx::USART_receive(void)
-{
- 26a:	dc 01       	movw	r26, r24
-	while((UCSR0A & (1<<RXC0))==0); // Prüfen ,ob bit RCX0 in UCSR0A gesetzt ist  
- 26c:	e0 ec       	ldi	r30, 0xC0	; 192
- 26e:	f0 e0       	ldi	r31, 0x00	; 0
- 270:	80 81       	ld	r24, Z
- 272:	88 23       	and	r24, r24
- 274:	ec f7       	brge	.-6      	; 0x270 <_ZN10SerialTxRx13USART_receiveEv+0x6>
-	// Do nothing until data have been received and is ready to be read from UDR (warten bis Zeichen verfuegbar)
-	ReceivedByte= UDR0;
- 276:	80 91 c6 00 	lds	r24, 0x00C6
- 27a:	8c 93       	st	X, r24
-	return ReceivedByte;
-	
-}
- 27c:	08 95       	ret
-
-0000027e <_ZN10SerialTxRx10USART_sendEh>:
-
-void SerialTxRx::USART_send(unsigned char data)
- {
-	  while((UCSR0A & (1<<UDRE0))==0);
- 27e:	e0 ec       	ldi	r30, 0xC0	; 192
- 280:	f0 e0       	ldi	r31, 0x00	; 0
- 282:	80 81       	ld	r24, Z
- 284:	85 ff       	sbrs	r24, 5
- 286:	fd cf       	rjmp	.-6      	; 0x282 <_ZN10SerialTxRx10USART_sendEh+0x4>
-	   // Do nothing until UDR is ready for more data to be written to it
-	 UDR0 = data;
- 288:	60 93 c6 00 	sts	0x00C6, r22
- 28c:	08 95       	ret
-
-0000028e <_ZN10SerialTxRx15USART_putstringEPc>:
- }
-
-void SerialTxRx::USART_putstring(char* StringPtr)
-{
- 28e:	0f 93       	push	r16
- 290:	1f 93       	push	r17
- 292:	cf 93       	push	r28
- 294:	df 93       	push	r29
- 296:	8c 01       	movw	r16, r24
- 298:	eb 01       	movw	r28, r22
-		while(*StringPtr != 0x00){
- 29a:	68 81       	ld	r22, Y
- 29c:	66 23       	and	r22, r22
- 29e:	31 f0       	breq	.+12     	; 0x2ac <_ZN10SerialTxRx15USART_putstringEPc+0x1e>
- 2a0:	21 96       	adiw	r28, 0x01	; 1
-		USART_send(*StringPtr);
- 2a2:	c8 01       	movw	r24, r16
- 2a4:	ec df       	rcall	.-40     	; 0x27e <_ZN10SerialTxRx10USART_sendEh>
-	 UDR0 = data;
- }
-
-void SerialTxRx::USART_putstring(char* StringPtr)
+0000040a <_ZN10SerialTxRxC1Ej>:
 {
 		while(*StringPtr != 0x00){
- 2a6:	69 91       	ld	r22, Y+
- 2a8:	61 11       	cpse	r22, r1
- 2aa:	fb cf       	rjmp	.-10     	; 0x2a2 <_ZN10SerialTxRx15USART_putstringEPc+0x14>
 		USART_send(*StringPtr);
 		StringPtr++;
 		}
 }
- 2ac:	df 91       	pop	r29
- 2ae:	cf 91       	pop	r28
- 2b0:	1f 91       	pop	r17
- 2b2:	0f 91       	pop	r16
- 2b4:	08 95       	ret
+ 40a:	cf 93       	push	r28
+ 40c:	df 93       	push	r29
+ 40e:	ec 01       	movw	r28, r24
+ 410:	cb 01       	movw	r24, r22
+ 412:	a0 e0       	ldi	r26, 0x00	; 0
+ 414:	b0 e0       	ldi	r27, 0x00	; 0
+ 416:	88 0f       	add	r24, r24
+ 418:	99 1f       	adc	r25, r25
+ 41a:	aa 1f       	adc	r26, r26
+ 41c:	bb 1f       	adc	r27, r27
+ 41e:	88 0f       	add	r24, r24
+ 420:	99 1f       	adc	r25, r25
+ 422:	aa 1f       	adc	r26, r26
+ 424:	bb 1f       	adc	r27, r27
+ 426:	9c 01       	movw	r18, r24
+ 428:	ad 01       	movw	r20, r26
+ 42a:	22 0f       	add	r18, r18
+ 42c:	33 1f       	adc	r19, r19
+ 42e:	44 1f       	adc	r20, r20
+ 430:	55 1f       	adc	r21, r21
+ 432:	22 0f       	add	r18, r18
+ 434:	33 1f       	adc	r19, r19
+ 436:	44 1f       	adc	r20, r20
+ 438:	55 1f       	adc	r21, r21
+ 43a:	60 e0       	ldi	r22, 0x00	; 0
+ 43c:	74 e2       	ldi	r23, 0x24	; 36
+ 43e:	84 ef       	ldi	r24, 0xF4	; 244
+ 440:	90 e0       	ldi	r25, 0x00	; 0
+ 442:	06 d0       	rcall	.+12     	; 0x450 <__udivmodsi4>
+ 444:	21 50       	subi	r18, 0x01	; 1
+ 446:	29 83       	std	Y+1, r18	; 0x01
+ 448:	df 91       	pop	r29
+ 44a:	cf 91       	pop	r28
+ 44c:	08 95       	ret
 
-000002b6 <_ZN10SerialTxRxD1Ev>:
+0000044e <_ZN10SerialTxRxD1Ev>:
 
 // default destructor
 SerialTxRx::~SerialTxRx()
- 2b6:	08 95       	ret
+ 44e:	08 95       	ret
 
-000002b8 <__udivmodsi4>:
- 2b8:	a1 e2       	ldi	r26, 0x21	; 33
- 2ba:	1a 2e       	mov	r1, r26
- 2bc:	aa 1b       	sub	r26, r26
- 2be:	bb 1b       	sub	r27, r27
- 2c0:	fd 01       	movw	r30, r26
- 2c2:	0d c0       	rjmp	.+26     	; 0x2de <__udivmodsi4_ep>
+00000450 <__udivmodsi4>:
+ 450:	a1 e2       	ldi	r26, 0x21	; 33
+ 452:	1a 2e       	mov	r1, r26
+ 454:	aa 1b       	sub	r26, r26
+ 456:	bb 1b       	sub	r27, r27
+ 458:	fd 01       	movw	r30, r26
+ 45a:	0d c0       	rjmp	.+26     	; 0x476 <__udivmodsi4_ep>
 
-000002c4 <__udivmodsi4_loop>:
- 2c4:	aa 1f       	adc	r26, r26
- 2c6:	bb 1f       	adc	r27, r27
- 2c8:	ee 1f       	adc	r30, r30
- 2ca:	ff 1f       	adc	r31, r31
- 2cc:	a2 17       	cp	r26, r18
- 2ce:	b3 07       	cpc	r27, r19
- 2d0:	e4 07       	cpc	r30, r20
- 2d2:	f5 07       	cpc	r31, r21
- 2d4:	20 f0       	brcs	.+8      	; 0x2de <__udivmodsi4_ep>
- 2d6:	a2 1b       	sub	r26, r18
- 2d8:	b3 0b       	sbc	r27, r19
- 2da:	e4 0b       	sbc	r30, r20
- 2dc:	f5 0b       	sbc	r31, r21
+0000045c <__udivmodsi4_loop>:
+ 45c:	aa 1f       	adc	r26, r26
+ 45e:	bb 1f       	adc	r27, r27
+ 460:	ee 1f       	adc	r30, r30
+ 462:	ff 1f       	adc	r31, r31
+ 464:	a2 17       	cp	r26, r18
+ 466:	b3 07       	cpc	r27, r19
+ 468:	e4 07       	cpc	r30, r20
+ 46a:	f5 07       	cpc	r31, r21
+ 46c:	20 f0       	brcs	.+8      	; 0x476 <__udivmodsi4_ep>
+ 46e:	a2 1b       	sub	r26, r18
+ 470:	b3 0b       	sbc	r27, r19
+ 472:	e4 0b       	sbc	r30, r20
+ 474:	f5 0b       	sbc	r31, r21
 
-000002de <__udivmodsi4_ep>:
- 2de:	66 1f       	adc	r22, r22
- 2e0:	77 1f       	adc	r23, r23
- 2e2:	88 1f       	adc	r24, r24
- 2e4:	99 1f       	adc	r25, r25
- 2e6:	1a 94       	dec	r1
- 2e8:	69 f7       	brne	.-38     	; 0x2c4 <__udivmodsi4_loop>
- 2ea:	60 95       	com	r22
- 2ec:	70 95       	com	r23
- 2ee:	80 95       	com	r24
- 2f0:	90 95       	com	r25
- 2f2:	9b 01       	movw	r18, r22
- 2f4:	ac 01       	movw	r20, r24
- 2f6:	bd 01       	movw	r22, r26
- 2f8:	cf 01       	movw	r24, r30
- 2fa:	08 95       	ret
+00000476 <__udivmodsi4_ep>:
+ 476:	66 1f       	adc	r22, r22
+ 478:	77 1f       	adc	r23, r23
+ 47a:	88 1f       	adc	r24, r24
+ 47c:	99 1f       	adc	r25, r25
+ 47e:	1a 94       	dec	r1
+ 480:	69 f7       	brne	.-38     	; 0x45c <__udivmodsi4_loop>
+ 482:	60 95       	com	r22
+ 484:	70 95       	com	r23
+ 486:	80 95       	com	r24
+ 488:	90 95       	com	r25
+ 48a:	9b 01       	movw	r18, r22
+ 48c:	ac 01       	movw	r20, r24
+ 48e:	bd 01       	movw	r22, r26
+ 490:	cf 01       	movw	r24, r30
+ 492:	08 95       	ret
 
-000002fc <__tablejump_elpm__>:
- 2fc:	07 90       	elpm	r0, Z+
- 2fe:	f6 91       	elpm	r31, Z
- 300:	e0 2d       	mov	r30, r0
- 302:	19 94       	eijmp
+00000494 <__tablejump_elpm__>:
+ 494:	07 90       	elpm	r0, Z+
+ 496:	f6 91       	elpm	r31, Z
+ 498:	e0 2d       	mov	r30, r0
+ 49a:	19 94       	eijmp
 
-00000304 <__do_global_dtors>:
- 304:	10 e0       	ldi	r17, 0x00	; 0
- 306:	c6 ee       	ldi	r28, 0xE6	; 230
- 308:	d0 e0       	ldi	r29, 0x00	; 0
- 30a:	00 e0       	ldi	r16, 0x00	; 0
- 30c:	05 c0       	rjmp	.+10     	; 0x318 <__do_global_dtors+0x14>
- 30e:	22 97       	sbiw	r28, 0x02	; 2
- 310:	01 09       	sbc	r16, r1
- 312:	fe 01       	movw	r30, r28
- 314:	0b bf       	out	0x3b, r16	; 59
- 316:	f2 df       	rcall	.-28     	; 0x2fc <__tablejump_elpm__>
- 318:	c8 3e       	cpi	r28, 0xE8	; 232
- 31a:	d1 07       	cpc	r29, r17
- 31c:	80 e0       	ldi	r24, 0x00	; 0
- 31e:	08 07       	cpc	r16, r24
- 320:	b1 f7       	brne	.-20     	; 0x30e <__do_global_dtors+0xa>
- 322:	f8 94       	cli
+0000049c <__do_global_dtors>:
+ 49c:	10 e0       	ldi	r17, 0x00	; 0
+ 49e:	c6 ee       	ldi	r28, 0xE6	; 230
+ 4a0:	d0 e0       	ldi	r29, 0x00	; 0
+ 4a2:	00 e0       	ldi	r16, 0x00	; 0
+ 4a4:	05 c0       	rjmp	.+10     	; 0x4b0 <__do_global_dtors+0x14>
+ 4a6:	22 97       	sbiw	r28, 0x02	; 2
+ 4a8:	01 09       	sbc	r16, r1
+ 4aa:	fe 01       	movw	r30, r28
+ 4ac:	0b bf       	out	0x3b, r16	; 59
+ 4ae:	f2 df       	rcall	.-28     	; 0x494 <__tablejump_elpm__>
+ 4b0:	c8 3e       	cpi	r28, 0xE8	; 232
+ 4b2:	d1 07       	cpc	r29, r17
+ 4b4:	80 e0       	ldi	r24, 0x00	; 0
+ 4b6:	08 07       	cpc	r16, r24
+ 4b8:	b1 f7       	brne	.-20     	; 0x4a6 <__do_global_dtors+0xa>
+ 4ba:	f8 94       	cli
 
-00000324 <__stop_program>:
- 324:	ff cf       	rjmp	.-2      	; 0x324 <__stop_program>
+000004bc <__stop_program>:
+ 4bc:	ff cf       	rjmp	.-2      	; 0x4bc <__stop_program>

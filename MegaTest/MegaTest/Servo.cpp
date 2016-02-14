@@ -2,7 +2,7 @@
 * Servo.cpp
 *
 * Created: 09.02.2016 13:35:08
-* Author: shantonio
+* Author: Anton Shilin
 */
 
 

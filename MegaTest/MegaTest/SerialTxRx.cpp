@@ -28,7 +28,7 @@
 	/*
 	*****************Set frame****************************
 	USART Mode: Asynchronous USART
-	format: 8 DATA bits, NO parity, 1 STOP bit 
+	FORMAT: 8 DATA bits, NO parity, 1 STOP bit 
 	USART Control and Status Register UCSR0C = 0b00000110 
 	*******************************************************
 	*/
@@ -42,7 +42,7 @@
 
 unsigned char SerialTxRx::USART_receive(void)
 {
-	while((UCSR0A & (1<<RXC0))==0); // Prüfen ,ob bit RCX0 in UCSR0A gesetzt ist  
+	while((UCSR0A & (1<<RXC0))==0); //!! Prüfen ,ob bit RCX0 in UCSR0A gesetzt ist !! 
 	// Do nothing until data have been received and is ready to be read from UDR (warten bis Zeichen verfuegbar)
 	ReceivedByte= UDR0;
 	return ReceivedByte;
