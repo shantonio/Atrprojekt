@@ -10,18 +10,19 @@
 
 
  **************************PinOut Info for Arduino Board Mega 2560********************
- * LCD RS pin to digital 		Arduino pin 24 (PA2)
- * LCD Enable pin to digital 	Arduino pin 25 (PA3)
- * LCD D4 pin to digital 		Arduino pin 26 (PA4)
- * LCD D5 pin to digital 		Arduino pin 27 (PA5)
- * LCD D6 pin to digital 		Arduino pin 28 (PA6)
- * LCD D7 pin to digital 		Arduino pin 29 (PA7)
- * LCD R/W pin	to ground		Arduino GND
- * LCD VSS pin to ground		Arduino GND
- * LCD VCC(VDD) pin to 5V		Arduino 5V Out
- * LCD 15 Pin LED+				Arduino 5V Out
- * LCD 16 Pin LED-				Arduino GND
- * LCD VO (VEE) pin	to Poti(Contrast)		
+ * LCD VSS			pin 1 to ground			Arduino pin GND
+ * LCD VCC(VDD)		pin 2 to 5V				Arduino pin 5V Out
+ * LCD VO (VEE)		pin	3					Poti    (Contrast)	
+ * LCD RS			pin 4  to digital 		Arduino pin 24 (PA2)
+ * LCD R/W			pin	5  to ground		Arduino pin GND
+ * LCD E(Enable)	pin 6  to digital 		Arduino pin 25 (PA3)
+ * LCD D4			pin 11 to digital 		Arduino pin 26 (PA4)
+ * LCD D5			pin 12 to digital 		Arduino pin 27 (PA5)
+ * LCD D6			pin 13 to digital 		Arduino pin 28 (PA6)
+ * LCD D7			pin 14 to digital 		Arduino pin 29 (PA7)
+ * LCD LED+			pin 15 					Arduino pin 5V Out
+ * LCD LED-			pin 16					Arduino pin GND
+	
  */
 
 
@@ -91,17 +92,16 @@
 
 // Set Function --------------- 0b001xxxxx
 #define LCD_SET_FUNCTION        0x20
-#define LCD_DISPLAYCONTROL		0x08
 #define LCD_FUNCTION_4BIT       0x00
 #define LCD_FUNCTION_8BIT       0x10
 #define LCD_FUNCTION_1LINE      0x00
 #define LCD_FUNCTION_2LINE      0x08
 #define LCD_FUNCTION_5X7        0x00
+
 #define LCD_SOFT_RESET          0x30
 
 // Set Display ---------------- 0b00001xxx
 #define LCD_SET_DISPLAY         0x08
-
 #define LCD_DISPLAY_OFF         0x00
 #define LCD_DISPLAY_ON          0x04
 #define LCD_CURSOR_OFF          0x00

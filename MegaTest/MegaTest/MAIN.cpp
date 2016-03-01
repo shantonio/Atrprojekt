@@ -56,8 +56,8 @@ void initTimer1(){						// 16 Bit Timer
 	TIMSK1 = (1 << OCIE1A);								// Set Timer Interrupt Mask
 		 									
 }
-
- 
+     ///
+  
 int main(void)
 {	 // DDRB |= (1<<PB7); // LED ON/OFF Arduino PIN 13 // PinMODE OUTPUT
 	//Servo servo1_2(90);

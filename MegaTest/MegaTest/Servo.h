@@ -33,6 +33,7 @@ public:
 	Servo();
 	Servo(int pos);
 	void initTimer1PWM();
+	void changeAngle(uint8_t angle);
 	~Servo();
 protected:
 private:

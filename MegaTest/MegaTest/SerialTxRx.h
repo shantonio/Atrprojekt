@@ -14,7 +14,10 @@
 #endif
 
 #include <avr/io.h>
-#include <avr/interrupt.h>
+//#include <avr/interrupt.h>
+#include <stdlib.h>
+#include <string.h>
+
 
 
 
@@ -36,18 +39,21 @@ It consists of several parts:
 class SerialTxRx
 {
 //variables
-public:   unsigned char ReceivedByte;
+public:   unsigned char ReceivedByte; 
 protected:
 private: uint8_t UBRR_VALUE;
 
 //functions
 public:
-	
+	 
 	SerialTxRx(uint16_t Baundrate);
 	void Init_USART();
+	bool USART_isReceived(void);
+	bool USART_available(void);
 	unsigned char USART_receive(void);
 	void USART_send(unsigned char data);
 	void USART_putstring(char* StringPtr);
+	static char *AngleToServo(uint8_t _ServoNumber,uint16_t _Angle);
 	~SerialTxRx();
 protected:
 private:

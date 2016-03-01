@@ -42,25 +42,25 @@ void LcdDriver::LCD_init(){							//Hardware PIN : Symbol
 	
 	// 4-bit Modus aktivieren
 	lcd_out( LCD_SET_FUNCTION |
-	LCD_FUNCTION_4BIT );
+			 LCD_FUNCTION_4BIT );
 	_delay_ms( LCD_SET_4BITMODE_MS );
 	
 	// 4-bit Modus / 2 Zeilen / 5x7
-	lcd_command( LCD_SET_FUNCTION |
-	LCD_FUNCTION_4BIT |
-	LCD_FUNCTION_2LINE |
-	LCD_FUNCTION_5X7 );
+	lcd_command( LCD_SET_FUNCTION   |
+				 LCD_FUNCTION_4BIT  |
+				 LCD_FUNCTION_2LINE |
+				 LCD_FUNCTION_5X7 );
 	
 	// Display ein / Cursor aus / Blinken aus
 	lcd_command( LCD_SET_DISPLAY |
-	LCD_DISPLAY_ON  |
-	LCD_CURSOR_OFF  |
-	LCD_BLINKING_OFF);
+				 LCD_DISPLAY_ON  |
+				 LCD_CURSOR_OFF  |
+				 LCD_BLINKING_OFF);
 	
 	// Cursor inkrement / kein Scrollen
-	lcd_command( LCD_SET_ENTRY |
-	LCD_ENTRY_INCREASE |
-	LCD_ENTRY_NOSHIFT );
+	lcd_command( LCD_SET_ENTRY		|
+				 LCD_ENTRY_INCREASE |
+				 LCD_ENTRY_NOSHIFT );
 	
 	LCD_clr();
 }
@@ -178,6 +178,8 @@ void LcdDriver::lcd_enable( void )
 	LCD_PORT &= ~(1<<LCD_EN);    // Enable auf 0 setzen
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Sendet eine 4-bit Ausgabeoperation an das LCD
 void LcdDriver::lcd_out( uint8_t data )
 {
 	data &= 0xF0;                       // obere 4 Bit maskieren

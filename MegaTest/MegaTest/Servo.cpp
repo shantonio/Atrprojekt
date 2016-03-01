@@ -50,7 +50,14 @@ void Servo::initTimer1PWM()
 		//PWM, Phase Correct  With ICR1 as TOP
 		
 		// Phi =0 wenn OCR1A= 500;Phi =180 wenn OCR1A= 2500 jede Grad + 11.11
-		OCR1A = 500+90*11.11;									//  set PWM for 0% duty cycle @ 16bit Pulse width vary between 0.5 and 2.5ms (von 0-180)
-		OCR1B = 500+180*11.11;
-		OCR1C = 500+0*11.11;
+		
+		
+		OCR1C = 500+0*11.11; //Pin1???? wird nicht gebraucht nur zwei servo nötig
 }
+
+void Servo::changeAngle(uint8_t angle)
+{
+OCR1B = 500+angle*11.11;			//Pin12
+OCR1A = 500+angle*11.11;				//Pin11						//  set PWM for 0% duty cycle @ 16bit Pulse width vary between 0.5 and 2.5ms (von 0-180)
+}
+

@@ -1,4 +1,4 @@
-Servo.d Servo.o: .././Servo.cpp .././Servo.h \
+st_button.d st_button.o: .././st_button.cpp .././Macros.h \
  c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -10,9 +10,11 @@ Servo.d Servo.o: .././Servo.cpp .././Servo.h \
  c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\common.h \
  c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
- c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h
+ c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
+ .././st_button.h \
+ c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\4.9.2\include\stdint-gcc.h
 
-.././Servo.h:
+.././Macros.h:
 
 c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -37,3 +39,7 @@ c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\a
 c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h:
 
 c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
+
+.././st_button.h:
+
+c:\program\ files\ (x86)\atmel\ 7\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\4.9.2\include\stdint-gcc.h:
